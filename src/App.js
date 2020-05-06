@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Navbar from "./Navbar.js";
+import Jumbotron from "./Jumbotron.js";
+import { Card } from "./Card.js";
 
-function App() {
+function App({ data }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid p-0">
+      {/* navigation */}
+      <Navbar />
+
+      {/* header */}
+      <Jumbotron trialNumber={data.length} />
+
+      {/* content */}
+      <div className="container">
+        <div className="row">
+          <div className="border content">
+            <table className="table">
+              <tbody>
+                {data.map((trial, i) => {
+                  return <Card card={trial} index={i} />;
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* sidebar */}
+          <div>{/* to render sidebar here */}</div>
+        </div>
+      </div>
+
     </div>
   );
 }
